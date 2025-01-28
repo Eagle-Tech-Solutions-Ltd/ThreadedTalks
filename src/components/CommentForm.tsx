@@ -1,15 +1,21 @@
 // src/components/CommentForm.tsx
 import React, { useState } from "react";
+import "../comment.css";
 
 interface CommentFormProps {
   parentId: number;
+  parentText: String;
   onSubmit: (text: string) => void;
+  onCancel: () => void;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({ parentId, onSubmit }) => {
+const CommentForm: React.FC<CommentFormProps> = ({
+  parentId,
+  parentText,
+  onSubmit,
+  onCancel,
+}) => {
   const [text, setText] = useState("");
-  // const [isVisible, setIsVisible] = useState(false);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
@@ -19,45 +25,37 @@ const CommentForm: React.FC<CommentFormProps> = ({ parentId, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Write a reply..."
-        style={styles.input}
-      />
-      <button type="submit" style={styles.button}>
-        Reply
-      </button>
-    </form>
+    <>
+      {parentText ? (
+        <div className="d-flex">
+          <p>{parentText}</p>
+          <button
+            type="submit"
+            className="commentbtn"
+            onClick={() => {
+              onCancel();
+            }}
+          >
+            cancel
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
+      <form onSubmit={handleSubmit} className="formcomment">
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Write a reply..."
+          className="inputcomment"
+        />
+        <button type="submit" className="commentbtn">
+          Reply
+        </button>
+      </form>
+    </>
   );
-};
-
-const styles = {
-  form: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    marginTop: "10px",
-  },
-  input: {
-    width: "90%",
-    padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ddd",
-    Margintop: "10px",
-    height: "20px",
-    fontSize: "18px",
-  },
-  button: {
-    padding: "10px 20px",
-    backgroundColor: "#007BFF",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
 };
 
 export default CommentForm;

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import CommentForm from "./CommentForm.tsx";
 import CommentList from "./CommentList.tsx";
-import postImage from "../assets/images/1.png";
+// import postImage from "../assets/images/1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faShare } from "@fortawesome/free-solid-svg-icons";
 import "../comment.css";
@@ -14,21 +14,32 @@ interface PostProps {
     description: string;
     comments: { id: number; text: string; replies: any[] }[];
   };
-  addComment: (postId: number, commentText: string) => void;
-  addReply: (postId: number, replyText: string, parentId: number) => void;
+  addComment: (postId: number, parentId: number, replyText: string) => void;
 }
 
-const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
+const Post: React.FC<PostProps> = ({ post, addComment }) => {
   const [showComments, setShowComments] = useState(false);
+  const [ParentId, setParentId] = useState(0);
+  const [PostId, setPostId] = useState(0);
+  const [ParentText, setParentText] = useState("");
 
-  const handleShowComments = () => {
-    setShowComments(!showComments);
+  const handleShowComments = (text) => {
+    console.log("textdj,fsfg===>", text);
+    if (showComments) {
+      setPostId(0);
+      setParentId(0);
+      setParentText("");
+      setShowComments(false);
+    } else {
+      setPostId(text?.id);
+      setParentId(text?.id);
+      setShowComments(true);
+    }
   };
 
   return (
-    <div style={styles.postContainer}>
-      {/* <img src={post.image} alt="Post" style={styles.image} /> */}
-      <img src={postImage} alt="Post" className="imagesset" />
+    <div className="postContainer">
+      <img src={post.image} alt="Post" className="imagesset" />
       <div>
         <p>{post.description}</p>
       </div>
@@ -39,7 +50,12 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
           <p>Link</p>
         </div>
         <div>
-          <p onClick={handleShowComments} className="commentButton">
+          <p
+            onClick={() => {
+              handleShowComments(post);
+            }}
+            className="commentButton"
+          >
             💬 {post.comments?.length} Comments
           </p>
         </div>
@@ -57,17 +73,24 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
 
       <div>
         {showComments && (
-          <div style={styles.commentsSection}>
+          <div>
             <CommentList
               comments={post.comments}
               addReply={(text, parentId) => {
-                addReply(post.id, text, parentId);
+                setParentId(parentId);
+                setParentText(text);
               }}
             />
             <CommentForm
-              parentId={post.id}
+              parentId={ParentId}
+              parentText={ParentText}
               onSubmit={(text) => {
-                addComment(post.id, text);
+                addComment(PostId, ParentId, text);
+              }}
+              onCancel={() => {
+                setPostId(PostId);
+                setParentId(PostId);
+                setParentText("");
               }}
             />
           </div>
@@ -75,30 +98,6 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  postContainer: {
-    width: "800px",
-    marginBottom: "20px",
-    textAlign: "center",
-    padding: "10px",
-    backgroundColor: "#f4f4f4",
-    borderRadius: "10px",
-  },
-  image: {
-    width: "80%",
-    borderRadius: "10px",
-  },
-  // commentButton: {
-  //   marginTop: "10px",
-  //   backgroundColor: "#007BFF",
-  //   color: "white",
-  //   border: "none",
-  //   padding: "8px 16px",
-  //   borderRadius: "5px",
-  //   cursor: "pointer",
-  // },
 };
 
 export default Post;

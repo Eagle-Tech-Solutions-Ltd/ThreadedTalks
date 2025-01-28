@@ -1,5 +1,6 @@
 // src/components/CommentIcon.tsx
 import React from 'react';
+import "../comment.css";
 
 interface CommentIconProps {
   onClick: () => void;
@@ -7,20 +8,10 @@ interface CommentIconProps {
 
 const CommentIcon: React.FC<CommentIconProps> = ({ onClick }) => {
   return (
-    <div onClick={onClick} style={styles.icon}>
+    <div onClick={onClick} className='commenticon'>
       💬 Comment
     </div>
   );
-};
-
-const styles = {
-  icon: {
-    cursor: 'pointer',
-    color: '#007BFF',
-    fontSize: '18px',
-    marginTop: '10px',
-    textAlign: 'center',
-  },
 };
 
 export default CommentIcon;

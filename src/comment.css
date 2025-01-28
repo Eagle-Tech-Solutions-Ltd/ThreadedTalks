@@ -1,3 +1,87 @@
+/* comment page ---------- */
+
+.repliesContainer {
+  padding-left: 20px;
+}
+
+/* commentform page---------- */
+
+.formcomment {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.inputcomment {
+  width: 90%;
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  height: 45px;
+  font-size: 18px;
+}
+
+.commentbtn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* comment icon page ---------- */
+
+.commenticon {
+  cursor: pointer;
+  color: #007bff;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* comment list page ------------- */
+.commentsContainer {
+  margin-top: 10px;
+}
+
+/* new post form page ------------ */
+
+.newpostform {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.newpostinput {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* post page ---------- */
+
+.postContainer {
+  width: 800px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+}
+
+.imagesset {
+  width: 80%;
+  border-radius: 10px;
+  max-height: 500px;
+  margin: 1rem 0;
+}
+
+
 .alignclickbtn {
   display: flex;
   justify-content: space-between;
@@ -13,6 +97,7 @@
 
 .commentlist p {
   margin-left: 5px;
+  margin-bottom: 0;
 }
 
 .commentButton {
@@ -24,19 +109,6 @@
   cursor: pointer;
 }
 
-.pageContainer {
-  /* margin: 20px auto; */
-  /* padding: 20px; */
-  /* background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px; */
-}
-
-.imagesset {
-  width: 80%;
-  border-radius: 10px;
-  margin: 1rem 0;
-}
 
 .setalldiv {
   display: flex;
@@ -44,6 +116,7 @@
   align-items: flex-start;
   margin-left: 1.5rem;
   width: 100%;
+  margin: 1rem 0;
 }
 
 /* Container for chat messages */
@@ -53,7 +126,6 @@
 }
 
 .chat-message {
-  margin: 1rem 0 0 0;
   padding: 10px;
   border-radius: 15px;
   font-size: 16px;
@@ -96,4 +168,34 @@
   margin: 0 0 10px 80px;
   color: black;
   font-size: 14px;
+}
+
+.username {
+  text-align: left;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+/* home css ---------------- */
+
+.commentcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.newPostButton {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  padding: 12px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
