@@ -1,0 +1,99 @@
+.alignclickbtn {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.commentlist {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.commentlist p {
+  margin-left: 5px;
+}
+
+.commentButton {
+  margin-top: 10px;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pageContainer {
+  /* margin: 20px auto; */
+  /* padding: 20px; */
+  /* background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; */
+}
+
+.imagesset {
+  width: 80%;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.setalldiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1.5rem;
+  width: 100%;
+}
+
+/* Container for chat messages */
+
+.chat-message p {
+  margin: 0;
+}
+
+.chat-message {
+  margin: 1rem 0 0 0;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #4caf50;
+  color: white;
+  display: inline-block;
+  position: relative;
+  word-wrap: break-word;
+  margin-left: 1rem;
+}
+
+.chat-message::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: -7%;
+  transform: rotate(50deg);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #4caf50;
+}
+
+.setprofileimg img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.alignprobub {
+  display: flex;
+  align-items: center;
+}
+
+.replyButton {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 0 0 10px 80px;
+  color: black;
+  font-size: 14px;
+}
