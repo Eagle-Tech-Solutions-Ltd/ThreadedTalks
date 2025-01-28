@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CommentForm from "./CommentForm.tsx";
+// import CommentForm from "./CommentForm.tsx";
 import "../comment.css";
 import profileimg from "../assets/images/1.png";
 
@@ -13,10 +13,8 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
-  const [showReply, setShowReply] = useState(false);
-
-  const handleReplyClick = () => {
-    setShowReply(!showReply); 
+  const handleReplyClick = (text, id) => {
+    addReply(text, id);
   };
 
   return (
@@ -25,29 +23,31 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
         <div className="setprofileimg">
           <img src={profileimg} alt="profileimg" />
         </div>
-        <div className="chat-message">
-          <p>{comment.text}</p>
+
+        <div>
+          <p className="username">User Name</p>
+          <div className="chat-message">
+            <p>{comment.text}</p>
+          </div>
         </div>
       </div>
 
       {/* Reply button toggles the form visibility */}
       <div>
-        <p onClick={handleReplyClick} className="replyButton">
-          {showReply ? "Cancel" : "Reply"} 
+        <p
+          onClick={() => {
+            handleReplyClick(comment.text, comment.id);
+          }}
+          className="replyButton"
+        >
+          {"Reply"}
         </p>
       </div>
 
-      {/* Render CommentForm if showReplyForm is true */}
-      {/* {showReplyForm && (
-        <CommentForm
-          parentId={comment.id}
-          onSubmit={(text) => addReply(text, comment.id)}
-        />
-      )} */}
 
       {/* If there are replies, render them recursively */}
       {comment.replies?.length > 0 && (
-        <div style={styles.repliesContainer}>
+        <div className="repliesContainer">
           {comment.replies.map((reply) => (
             <Comment key={reply.id} comment={reply} addReply={addReply} />
           ))}
@@ -55,13 +55,6 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
       )}
     </div>
   );
-};
-
-const styles = {
-  repliesContainer: {
-    marginTop: "10px",
-    paddingLeft: "20px",
-  },
 };
 
 export default Comment;
