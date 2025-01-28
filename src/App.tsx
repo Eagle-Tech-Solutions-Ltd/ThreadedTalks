@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.tsx";
-import PostPage from "./pages/PostPage.tsx";
+import './App.css'
 
 const App: React.FC = () => {
   return (

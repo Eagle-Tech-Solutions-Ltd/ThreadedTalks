@@ -2,16 +2,11 @@
 import React, { useState } from "react";
 import Post from "../components/Post.tsx";
 import NewPostForm from "../components/NewPostForm.tsx";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 const Home: React.FC = () => {
   const [showPostForm, setShowPostForm] = useState(false);
   const [show, setShow] = useState(false);
-
-  const handlepost = () => {
-    addPost();
-    setShow(false);
-  };
 
   const handleClose = () => {
     setShow(false);
@@ -45,6 +40,8 @@ const Home: React.FC = () => {
   ]);
 
   const addPost = (description: string, imageUrl: string) => {
+    console.log('description===>',description)
+    console.log('imageUrl===>',imageUrl)
     const newPost = {
       id: Date.now(),
       image: imageUrl,
@@ -169,16 +166,16 @@ const Home: React.FC = () => {
             <Modal.Title>New Post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {showPostForm && <NewPostForm onAddPost={addPost} />}
+            {showPostForm && <NewPostForm onAddPost={addPost} handleClose={handleClose}/>}
           </Modal.Body>
-          <Modal.Footer>
+          {/* <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
             <Button variant="primary" onClick={handlepost}>
               Post
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </div>
     </div>

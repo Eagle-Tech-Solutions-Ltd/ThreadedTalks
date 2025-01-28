@@ -1,6 +1,5 @@
 // src/components/CommentIcon.tsx
 import React from 'react';
-import "../comment.css";
 
 interface CommentIconProps {
   onClick: () => void;

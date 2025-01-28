@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // import CommentForm from "./CommentForm.tsx";
-import "../comment.css";
 import profileimg from "../assets/images/1.png";
 
 interface CommentProps {
@@ -29,21 +28,18 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
           <div className="chat-message">
             <p>{comment.text}</p>
           </div>
+          <p
+            onClick={() => {
+              handleReplyClick(comment.text, comment.id);
+            }}
+            className="replyButton"
+          >
+            {"Reply"}
+          </p>
         </div>
       </div>
 
       {/* Reply button toggles the form visibility */}
-      <div>
-        <p
-          onClick={() => {
-            handleReplyClick(comment.text, comment.id);
-          }}
-          className="replyButton"
-        >
-          {"Reply"}
-        </p>
-      </div>
-
 
       {/* If there are replies, render them recursively */}
       {comment.replies?.length > 0 && (

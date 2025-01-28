@@ -1,38 +1,245 @@
-.App {
+/* comment page ---------- */
+
+.repliesContainer {
+  padding-left: 20px;
+}
+
+.setmodalbtn {
+  display: flex;
+  column-gap: 1rem;
+}
+
+/* commentform page---------- */
+
+.formcomment {
+  display: flex;
+  align-items: baseline;
+  column-gap: 10px;
+}
+
+.inputcomment {
+  width: 90%;
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  height: 45px;
+  font-size: 18px;
+  position: relative;
+}
+
+.emoji-btn {
+  position: absolute;
+  right: 5%;
+}
+
+.commentbtn {
+  /* padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer; */
+  font-weight: 700;
+  cursor: pointer;
+  color: #007bff;
+  word-wrap: break-word;
+  margin-left: 0.8rem;
+}
+
+.aligncancel {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-left: 1rem;
+  font-weight: 500;
+  padding: 0 0.8rem 0 0;
+}
+
+.aligncancel p {
+  margin-bottom: 0;
+}
+
+.usercommenttext {
+  text-align: left;
+  line-break: anywhere;
+}
+
+.replaybtn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* comment icon page ---------- */
+
+.commenticon {
+  cursor: pointer;
+  color: #007bff;
+  font-size: 18px;
+  margin-top: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* comment list page ------------- */
+.commentsContainer {
+  margin-top: 10px;
+  padding: 0 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* new post form page ------------ */
+
+.newpostform {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.newpostinput {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* post page ---------- */
+
+.postContainer {
+  width: 800px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+}
+
+.imagesset {
+  width: 80%;
+  border-radius: 10px;
+  max-height: 500px;
+  margin: 1rem 0;
+}
+
+.alignclickbtn {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.commentlist {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.commentlist p {
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+
+.commentButton {
+  margin-top: 10px;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.setalldiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1.5rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+/* Container for chat messages */
+
+.chat-message p {
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.chat-message {
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #4caf50;
+  color: white;
+  display: inline-block;
+  position: relative;
+  margin-left: 1rem;
+  line-break: anywhere;
+}
+
+.chat-message::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: -8px;
+  transform: rotate(50deg);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #4caf50;
+}
+
+.setprofileimg img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.alignprobub {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.replyButton {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 0 8px 10px 0px;
+  text-align: right;
+  color: black;
+  font-size: 14px;
+}
+
+.username {
+  text-align: left;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+/* home css ---------------- */
+
+.commentcontainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.newPostButton {
+  position: fixed;
+  top: 3%;
+  right: 20%;
+  padding: 12px 20px;
+  background: #007bff;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

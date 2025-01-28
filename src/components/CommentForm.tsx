@@ -1,6 +1,5 @@
 // src/components/CommentForm.tsx
 import React, { useState } from "react";
-import "../comment.css";
 
 interface CommentFormProps {
   parentId: number;
@@ -16,6 +15,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
   onCancel,
 }) => {
   const [text, setText] = useState("");
+  // const [showPicker, setShowPicker] = useState(false);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
@@ -27,18 +27,21 @@ const CommentForm: React.FC<CommentFormProps> = ({
   return (
     <>
       {parentText ? (
-        <div className="d-flex">
-          <p>{parentText}</p>
-          <button
-            type="submit"
-            className="commentbtn"
+        <>
+          <div className="aligncancel chat-message">
+            <div>
+              <p className="usercommenttext">{parentText}</p>
+            </div>
+          </div>
+          <p
+            className="commentbtn text-end mb-0"
             onClick={() => {
               onCancel();
             }}
           >
-            cancel
-          </button>
-        </div>
+            Cancel
+          </p>
+        </>
       ) : (
         <></>
       )}
@@ -50,7 +53,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
           placeholder="Write a reply..."
           className="inputcomment"
         />
-        <button type="submit" className="commentbtn">
+        <button type="submit" className="replaybtn">
           Reply
         </button>
       </form>

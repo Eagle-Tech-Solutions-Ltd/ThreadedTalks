@@ -5,7 +5,6 @@ import CommentList from "./CommentList.tsx";
 // import postImage from "../assets/images/1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faShare } from "@fortawesome/free-solid-svg-icons";
-import "../comment.css";
 
 interface PostProps {
   post: {
@@ -18,13 +17,13 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ post, addComment }) => {
+  console.log("textdj,fsfg===>", post.image);
   const [showComments, setShowComments] = useState(false);
   const [ParentId, setParentId] = useState(0);
   const [PostId, setPostId] = useState(0);
   const [ParentText, setParentText] = useState("");
 
   const handleShowComments = (text) => {
-    console.log("textdj,fsfg===>", text);
     if (showComments) {
       setPostId(0);
       setParentId(0);
