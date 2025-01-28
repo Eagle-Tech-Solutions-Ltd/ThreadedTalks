@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CommentForm from "./CommentForm.tsx";
+// import CommentForm from "./CommentForm.tsx";
 import "../comment.css";
 import profileimg from "../assets/images/1.png";
 
@@ -16,7 +16,7 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
   const [showReply, setShowReply] = useState(false);
 
   const handleReplyClick = () => {
-    setShowReply(!showReply); 
+    setShowReply(!showReply);
   };
 
   return (
@@ -25,15 +25,19 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
         <div className="setprofileimg">
           <img src={profileimg} alt="profileimg" />
         </div>
-        <div className="chat-message">
-          <p>{comment.text}</p>
+
+        <div>
+          <p className="username">User Name</p>
+          <div className="chat-message">
+            <p>{comment.text}</p>
+          </div>
         </div>
       </div>
 
       {/* Reply button toggles the form visibility */}
       <div>
         <p onClick={handleReplyClick} className="replyButton">
-          {showReply ? "Cancel" : "Reply"} 
+          {showReply ? "Cancel" : "Reply"}
         </p>
       </div>
 
@@ -47,7 +51,7 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
 
       {/* If there are replies, render them recursively */}
       {comment.replies?.length > 0 && (
-        <div style={styles.repliesContainer}>
+        <div className="repliesContainer">
           {comment.replies.map((reply) => (
             <Comment key={reply.id} comment={reply} addReply={addReply} />
           ))}
@@ -57,11 +61,5 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
   );
 };
 
-const styles = {
-  repliesContainer: {
-    marginTop: "10px",
-    paddingLeft: "20px",
-  },
-};
 
 export default Comment;

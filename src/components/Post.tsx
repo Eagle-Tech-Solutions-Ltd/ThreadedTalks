@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import CommentForm from "./CommentForm.tsx";
 import CommentList from "./CommentList.tsx";
-import postImage from "../assets/images/1.png";
+// import postImage from "../assets/images/1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faShare } from "@fortawesome/free-solid-svg-icons";
 import "../comment.css";
@@ -26,9 +26,9 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
   };
 
   return (
-    <div style={styles.postContainer}>
-      {/* <img src={post.image} alt="Post" style={styles.image} /> */}
-      <img src={postImage} alt="Post" className="imagesset" />
+    <div className="postContainer">
+      <img src={post.image} alt="Post" className="imagesset" />
+      {/* <img src={postImage} alt="Post" className="imagesset" /> */}
       <div>
         <p>{post.description}</p>
       </div>
@@ -57,7 +57,7 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
 
       <div>
         {showComments && (
-          <div style={styles.commentsSection}>
+          <div>
             <CommentList
               comments={post.comments}
               addReply={(text, parentId) => {
@@ -75,30 +75,6 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  postContainer: {
-    width: "800px",
-    marginBottom: "20px",
-    textAlign: "center",
-    padding: "10px",
-    backgroundColor: "#f4f4f4",
-    borderRadius: "10px",
-  },
-  image: {
-    width: "80%",
-    borderRadius: "10px",
-  },
-  // commentButton: {
-  //   marginTop: "10px",
-  //   backgroundColor: "#007BFF",
-  //   color: "white",
-  //   border: "none",
-  //   padding: "8px 16px",
-  //   borderRadius: "5px",
-  //   cursor: "pointer",
-  // },
 };
 
 export default Post;

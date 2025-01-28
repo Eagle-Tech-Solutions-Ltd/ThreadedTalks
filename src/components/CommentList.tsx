@@ -9,7 +9,7 @@ interface CommentListProps {
 
 const CommentList: React.FC<CommentListProps> = ({ comments, addReply }) => {
   return (
-    <div style={styles.commentsContainer}>
+    <div className='commentsContainer'>
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} addReply={addReply} />
       ))}
@@ -17,10 +17,5 @@ const CommentList: React.FC<CommentListProps> = ({ comments, addReply }) => {
   );
 };
 
-const styles = {
-  commentsContainer: {
-    marginTop: '10px',
-  },
-};
 
 export default CommentList;
