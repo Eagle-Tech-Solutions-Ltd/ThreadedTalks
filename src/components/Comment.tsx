@@ -13,10 +13,8 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
-  const [showReply, setShowReply] = useState(false);
-
-  const handleReplyClick = () => {
-    setShowReply(!showReply);
+  const handleReplyClick = (text, id) => {
+    addReply(text, id);
   };
 
   return (
@@ -36,18 +34,16 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
 
       {/* Reply button toggles the form visibility */}
       <div>
-        <p onClick={handleReplyClick} className="replyButton">
-          {showReply ? "Cancel" : "Reply"}
+        <p
+          onClick={() => {
+            handleReplyClick(comment.text, comment.id);
+          }}
+          className="replyButton"
+        >
+          {"Reply"}
         </p>
       </div>
 
-      {/* Render CommentForm if showReplyForm is true */}
-      {/* {showReplyForm && (
-        <CommentForm
-          parentId={comment.id}
-          onSubmit={(text) => addReply(text, comment.id)}
-        />
-      )} */}
 
       {/* If there are replies, render them recursively */}
       {comment.replies?.length > 0 && (
@@ -60,6 +56,5 @@ const Comment: React.FC<CommentProps> = ({ comment, addReply }) => {
     </div>
   );
 };
-
 
 export default Comment;

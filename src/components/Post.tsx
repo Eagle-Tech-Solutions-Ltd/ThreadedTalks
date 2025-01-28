@@ -14,21 +14,32 @@ interface PostProps {
     description: string;
     comments: { id: number; text: string; replies: any[] }[];
   };
-  addComment: (postId: number, commentText: string) => void;
-  addReply: (postId: number, replyText: string, parentId: number) => void;
+  addComment: (postId: number, parentId: number, replyText: string) => void;
 }
 
-const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
+const Post: React.FC<PostProps> = ({ post, addComment }) => {
   const [showComments, setShowComments] = useState(false);
+  const [ParentId, setParentId] = useState(0);
+  const [PostId, setPostId] = useState(0);
+  const [ParentText, setParentText] = useState("");
 
-  const handleShowComments = () => {
-    setShowComments(!showComments);
+  const handleShowComments = (text) => {
+    console.log("textdj,fsfg===>", text);
+    if (showComments) {
+      setPostId(0);
+      setParentId(0);
+      setParentText("");
+      setShowComments(false);
+    } else {
+      setPostId(text?.id);
+      setParentId(text?.id);
+      setShowComments(true);
+    }
   };
 
   return (
     <div className="postContainer">
       <img src={post.image} alt="Post" className="imagesset" />
-      {/* <img src={postImage} alt="Post" className="imagesset" /> */}
       <div>
         <p>{post.description}</p>
       </div>
@@ -39,7 +50,12 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
           <p>Link</p>
         </div>
         <div>
-          <p onClick={handleShowComments} className="commentButton">
+          <p
+            onClick={() => {
+              handleShowComments(post);
+            }}
+            className="commentButton"
+          >
             💬 {post.comments?.length} Comments
           </p>
         </div>
@@ -61,13 +77,20 @@ const Post: React.FC<PostProps> = ({ post, addComment, addReply }) => {
             <CommentList
               comments={post.comments}
               addReply={(text, parentId) => {
-                addReply(post.id, text, parentId);
+                setParentId(parentId);
+                setParentText(text);
               }}
             />
             <CommentForm
-              parentId={post.id}
+              parentId={ParentId}
+              parentText={ParentText}
               onSubmit={(text) => {
-                addComment(post.id, text);
+                addComment(PostId, ParentId, text);
+              }}
+              onCancel={() => {
+                setPostId(PostId);
+                setParentId(PostId);
+                setParentText("");
               }}
             />
           </div>

@@ -29,18 +29,18 @@ const Home: React.FC = () => {
       description: "Post 1",
       comments: [
         {
-          id: 1,
+          id: 2,
           text: "Great post!",
-          replies: [{ id: 1, text: "Thank you!" }],
+          replies: [{ id: 3, text: "Thank you!", replies: [] }],
         },
-        { id: 2, text: "Nice picture!", replies: [],},
+        { id: 4, text: "Nice picture!", replies: [] },
       ],
     },
     {
-      id: 2,
+      id: 5,
       image: require("../assets/images/3.png"),
       description: "Post 2",
-      comments: [{ id: 1, text: "Amazing!" }],
+      comments: [{ id: 6, text: "Amazing!", replies: [] }],
     },
   ]);
 
@@ -99,17 +99,56 @@ const Home: React.FC = () => {
     );
   };
 
+  const addCommentReply = (
+    postId: number,
+    parentId: number,
+    commentText: string
+  ) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              comments:
+                postId === parentId
+                  ? [
+                      ...post.comments,
+                      { id: Date.now(), text: commentText, replies: [] },
+                    ]
+                  : addCommentRecursively(post.comments, parentId, commentText),
+            }
+          : post
+      )
+    );
+  };
+
+  const addCommentRecursively = (comments, parentId, commentText) =>
+    // console.log('comments====>',comments);
+    comments?.map((comment) =>
+      comment.id === parentId
+        ? {
+            ...comment,
+            replies: [
+              ...comment.replies,
+              { id: Date.now(), text: commentText, replies: [] },
+            ],
+          }
+        : {
+            ...comment,
+            replies: addCommentRecursively(
+              comment.replies,
+              parentId,
+              commentText
+            ),
+          }
+    );
+
   return (
     <div className="container">
       <div className="commentcontainer">
         {/* Displaying Posts */}
         {posts.map((post) => (
-          <Post
-            key={post.id}
-            post={post}
-            addComment={addComment}
-            addReply={addReply}
-          />
+          <Post key={post.id} post={post} addComment={addCommentReply} />
         ))}
 
         <div className="d-flex">
