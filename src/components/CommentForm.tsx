@@ -28,19 +28,20 @@ const CommentForm: React.FC<CommentFormProps> = ({
     <>
       {parentText ? (
         <>
-          <div className="aligncancel chat-message">
-            <div>
+          <div className="aligncancel ">
+            <div className="chat-message">
               <p className="usercommenttext">{parentText}</p>
             </div>
+            <p
+              className="commentbtn text-end mb-0"
+              onClick={() => {
+                onCancel();
+              }}
+            >
+              Cancel
+            </p>
           </div>
-          <p
-            className="commentbtn text-end mb-0"
-            onClick={() => {
-              onCancel();
-            }}
-          >
-            Cancel
-          </p>
+
         </>
       ) : (
         <></>

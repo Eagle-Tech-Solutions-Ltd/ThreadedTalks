@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import CommentForm from "./CommentForm.tsx";
 import CommentList from "./CommentList.tsx";
-// import postImage from "../assets/images/1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faShare } from "@fortawesome/free-solid-svg-icons";
 
@@ -38,11 +37,10 @@ const Post: React.FC<PostProps> = ({ post, addComment }) => {
 
   return (
     <div className="postContainer">
-      <img src={post.image} alt="Post" className="imagesset" />
       <div>
         <p>{post.description}</p>
       </div>
-
+      <img src={post.image} alt="Post" className="imagesset" />
       <div className="alignclickbtn">
         <div className="commentlist">
           <FontAwesomeIcon icon={faThumbsUp} />
@@ -65,7 +63,7 @@ const Post: React.FC<PostProps> = ({ post, addComment }) => {
             }}
             className="commentButton"
           >
-            <FontAwesomeIcon icon={faShare} /> {post.comments?.length} Share
+            <FontAwesomeIcon icon={faShare} /> {0} Share
           </p>
         </div>
       </div>

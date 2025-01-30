@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   font-weight: 500;
   padding: 0 0.8rem 0 0;
 }
@@ -234,8 +234,8 @@
 
 .newPostButton {
   position: fixed;
-  top: 3%;
-  right: 20%;
+  top: 20px;
+  right:30px;
   padding: 12px 20px;
   background: #007bff;
   color: white;

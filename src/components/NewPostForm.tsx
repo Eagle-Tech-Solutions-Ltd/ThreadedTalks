@@ -27,12 +27,13 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
   return (
     <>
       <form onSubmit={handleSubmit} className="newpostform">
-        <input
-          type="text"
+        <textarea
           placeholder="Enter post description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="newpostinput"
+          rows={3} // Adjust rows to control the height
+          cols={50} // Optional: Adjust width
         />
         <input
           type="text"

@@ -20,28 +20,73 @@ const Home: React.FC = () => {
   const [posts, setPosts] = useState([
     {
       id: 1,
-      image: require("../assets/images/1.png"),
-      description: "Post 1",
+      image: require("../assets/images/2.png"),
+      description: "Nature's masterpiece: where golden aspens meet snow-capped peaks.",
       comments: [
         {
-          id: 2,
-          text: "Great post!",
-          replies: [{ id: 3, text: "Thank you!", replies: [] }],
+          id: 101,
+          text: "This looks like a postcard! Stunning shot!",
+          replies: [{
+            id: 10101,
+            text: "Right? Nature really knows how to create perfection! Glad you liked it!",
+            replies: [{
+              id: 1010101,
+              text: "This is [Location Name]—a must-visit spot! You’d love it",
+              replies: []
+            }]
+          },
+          {
+            id: 10102,
+            text: "Totally agree! The lighting made it feel even more surreal",
+            replies: []
+          }],
         },
-        { id: 4, text: "Nice picture!", replies: [] },
+        {
+          id: 102,
+          text: "Nature at its finest! Love the mix of colors.",
+          replies: [{
+            id: 10201,
+            text: "Absolutely! The contrast is what makes it so magical.",
+            replies: []
+          }]
+        },
+        {
+          id: 103,
+          text: "Where is this magical place? I need to visit!",
+          replies: []
+        },
+        {
+          id: 104,
+          text: "Golden hour vibes on another level",
+          replies: []
+        },
       ],
     },
     {
-      id: 5,
-      image: require("../assets/images/3.png"),
-      description: "Post 2",
-      comments: [{ id: 6, text: "Amazing!", replies: [] }],
+      id: 2,
+      image: require("../assets/images/4.png"),
+      description: "Where the wild river meets majestic mountains, serenity finds its home.",
+      comments: [{
+        id: 201,
+        text: "This looks so peaceful and untouched!",
+        replies: []
+      },
+      {
+        id: 201,
+        text: "The water looks so pristine! Is this heaven on Earth",
+        replies: []
+      },
+      {
+        id: 201,
+        text: "That view is worth every hike! Absolutely stunning",
+        replies: []
+      }],
     },
   ]);
 
   const addPost = (description: string, imageUrl: string) => {
-    console.log('description===>',description)
-    console.log('imageUrl===>',imageUrl)
+    console.log('description===>', description)
+    console.log('imageUrl===>', imageUrl)
     const newPost = {
       id: Date.now(),
       image: imageUrl,
@@ -50,50 +95,6 @@ const Home: React.FC = () => {
     };
     setPosts([newPost, ...posts]);
     setShowPostForm(false);
-  };
-
-  const addComment = (postId: number, commentText: string) => {
-    console.log("commentText===>", commentText);
-    console.log("postId===>", postId);
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.id === postId
-          ? {
-              ...post,
-              comments: [
-                ...post.comments,
-                { id: Date.now(), text: commentText, replies: [] },
-              ],
-            }
-          : post
-      )
-    );
-  };
-
-  const addReply = (postId: number, replyText: string, parentId: number) => {
-    console.log("replyText===>", replyText);
-    console.log("parentId===>", parentId);
-    console.log("postId===>", postId);
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.id === postId
-          ? {
-              ...post,
-              comments: post.comments.map((comment) =>
-                comment.id === parentId
-                  ? {
-                      ...comment,
-                      replies: [
-                        ...comment.replies,
-                        { id: Date.now(), text: replyText, replies: [] },
-                      ],
-                    }
-                  : comment
-              ),
-            }
-          : post
-      )
-    );
   };
 
   const addCommentReply = (
@@ -105,15 +106,15 @@ const Home: React.FC = () => {
       prevPosts.map((post) =>
         post.id === postId
           ? {
-              ...post,
-              comments:
-                postId === parentId
-                  ? [
-                      ...post.comments,
-                      { id: Date.now(), text: commentText, replies: [] },
-                    ]
-                  : addCommentRecursively(post.comments, parentId, commentText),
-            }
+            ...post,
+            comments:
+              postId === parentId
+                ? [
+                  ...post.comments,
+                  { id: Date.now(), text: commentText, replies: [] },
+                ]
+                : addCommentRecursively(post.comments, parentId, commentText),
+          }
           : post
       )
     );
@@ -124,20 +125,20 @@ const Home: React.FC = () => {
     comments?.map((comment) =>
       comment.id === parentId
         ? {
-            ...comment,
-            replies: [
-              ...comment.replies,
-              { id: Date.now(), text: commentText, replies: [] },
-            ],
-          }
+          ...comment,
+          replies: [
+            ...comment.replies,
+            { id: Date.now(), text: commentText, replies: [] },
+          ],
+        }
         : {
-            ...comment,
-            replies: addCommentRecursively(
-              comment.replies,
-              parentId,
-              commentText
-            ),
-          }
+          ...comment,
+          replies: addCommentRecursively(
+            comment.replies,
+            parentId,
+            commentText
+          ),
+        }
     );
 
   return (
@@ -151,31 +152,18 @@ const Home: React.FC = () => {
         <div className="d-flex">
           <button onClick={handleShow} className="newPostButton">
             New Post
-            {/* {showPostForm ? "Cancel" : "New Post"} */}
           </button>
         </div>
       </div>
 
       <div>
-        {/* <Button variant="primary" onClick={handleShow}>
-          Launch Modal
-        </Button> */}
-
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>New Post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {showPostForm && <NewPostForm onAddPost={addPost} handleClose={handleClose}/>}
+            {showPostForm && <NewPostForm onAddPost={addPost} handleClose={handleClose} />}
           </Modal.Body>
-          {/* <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handlepost}>
-              Post
-            </Button>
-          </Modal.Footer> */}
         </Modal>
       </div>
     </div>

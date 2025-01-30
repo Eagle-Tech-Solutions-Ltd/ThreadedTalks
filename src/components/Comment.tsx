@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import CommentForm from "./CommentForm.tsx";
-import profileimg from "../assets/images/1.png";
+import profileimg from "../assets/images/profile.png";
 
 interface CommentProps {
   comment: {
